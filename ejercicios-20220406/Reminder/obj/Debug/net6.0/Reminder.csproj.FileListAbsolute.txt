@@ -1,0 +1,15 @@
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\bin\Debug\net6.0\Reminder.exe
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\bin\Debug\net6.0\Reminder.deps.json
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\bin\Debug\net6.0\Reminder.runtimeconfig.json
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\bin\Debug\net6.0\Reminder.dll
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\bin\Debug\net6.0\Reminder.pdb
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\obj\Debug\net6.0\Reminder.csproj.AssemblyReference.cache
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\obj\Debug\net6.0\Reminder.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\obj\Debug\net6.0\Reminder.AssemblyInfoInputs.cache
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\obj\Debug\net6.0\Reminder.AssemblyInfo.cs
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\obj\Debug\net6.0\Reminder.csproj.CoreCompileInputs.cache
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\obj\Debug\net6.0\Reminder.dll
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\obj\Debug\net6.0\refint\Reminder.dll
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\obj\Debug\net6.0\Reminder.pdb
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\obj\Debug\net6.0\Reminder.genruntimeconfig.cache
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Reminder\obj\Debug\net6.0\ref\Reminder.dll
