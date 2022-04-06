@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validaciones", "Validacione
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asynchronous", "Asynchronous\Asynchronous.csproj", "{C8BDBE0D-1782-43A6-AEAD-CF7C0E6D01D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reminder", "Reminder\Reminder.csproj", "{BD174156-D2E0-47D4-8FC1-9D1D47CC4D01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C8BDBE0D-1782-43A6-AEAD-CF7C0E6D01D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8BDBE0D-1782-43A6-AEAD-CF7C0E6D01D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8BDBE0D-1782-43A6-AEAD-CF7C0E6D01D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD174156-D2E0-47D4-8FC1-9D1D47CC4D01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD174156-D2E0-47D4-8FC1-9D1D47CC4D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD174156-D2E0-47D4-8FC1-9D1D47CC4D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD174156-D2E0-47D4-8FC1-9D1D47CC4D01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
