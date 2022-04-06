@@ -1,0 +1,15 @@
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\bin\Debug\net6.0\Validaciones.exe
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\bin\Debug\net6.0\Validaciones.deps.json
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\bin\Debug\net6.0\Validaciones.runtimeconfig.json
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\bin\Debug\net6.0\Validaciones.dll
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\bin\Debug\net6.0\Validaciones.pdb
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\obj\Debug\net6.0\Validaciones.csproj.AssemblyReference.cache
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\obj\Debug\net6.0\Validaciones.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\obj\Debug\net6.0\Validaciones.AssemblyInfoInputs.cache
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\obj\Debug\net6.0\Validaciones.AssemblyInfo.cs
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\obj\Debug\net6.0\Validaciones.csproj.CoreCompileInputs.cache
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\obj\Debug\net6.0\Validaciones.dll
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\obj\Debug\net6.0\refint\Validaciones.dll
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\obj\Debug\net6.0\Validaciones.pdb
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\obj\Debug\net6.0\Validaciones.genruntimeconfig.cache
+C:\Users\Luis\source\repos\luis-adame\curso-cs\ejercicios-20220406\Validaciones\obj\Debug\net6.0\ref\Validaciones.dll
