@@ -60,9 +60,12 @@ namespace BankApp
 			var transaction = CheckWithdrawalLimit(Balance - amount < _minimumBalance);
 			var withdrawal = new Transaction(amount, date, description);
 			TransactionList.Add(withdrawal);
+
+			if (transaction != null)
+				TransactionList.Add(transaction);
 		}
 
-		private Transaction CheckWithdrawalLimit(bool isOverCharge)
+		protected virtual Transaction CheckWithdrawalLimit(bool isOverCharge)
 		{
 			if (isOverCharge)
 			{
@@ -72,6 +75,21 @@ namespace BankApp
 			{
 				return default;
 			}
+		}
+
+		public string GetAccountHistory()
+		{
+			decimal balance = 0;
+			var report = new StringBuilder();
+			report.AppendLine("Date\tAmount\tBalance\tDescription\t");
+
+			foreach (var transaction in TransactionList)
+			{
+				balance += transaction.Amount;
+				report.AppendLine($"{transaction.Date.ToShortDateString}\t{transaction.Amount}\t{balance}\t{transaction.Description}");
+			}
+
+			return report.ToString();
 		}
 	}
 }
