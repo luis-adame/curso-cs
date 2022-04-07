@@ -81,12 +81,12 @@ namespace BankApp
 		{
 			decimal balance = 0;
 			var report = new StringBuilder();
-			report.AppendLine("Date\tAmount\tBalance\tDescription\t");
+			report.AppendLine("Date\t\t\tAmount\tBalance\tDescription\t");
 
 			foreach (var transaction in TransactionList)
 			{
 				balance += transaction.Amount;
-				report.AppendLine($"{transaction.Date.ToShortDateString}\t{transaction.Amount}\t{balance}\t{transaction.Description}");
+				report.AppendLine($"{transaction.Date}\t{transaction.Amount}\t{balance}\t{transaction.Description}");
 			}
 
 			return report.ToString();

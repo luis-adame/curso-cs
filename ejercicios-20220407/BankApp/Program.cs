@@ -11,9 +11,15 @@ using BankApp;
 //giftCard.Deposit(500, DateTime.Now.Date.AddDays(-2), "Para la gasolina");
 //giftCard.Deposit(200, DateTime.Now.Date.AddDays(0), "Para las caguas");
 
-var credito = new CreditAccount("Luis Felipe", 0, -3000);
+//var credito = new CreditAccount("Luis Felipe", 0, -3000);
 
-credito.Withdraw(750, DateTime.Now.Date.AddDays(-5), "gasto1");
-credito.Withdraw(750, DateTime.Now.Date.AddDays(-4), "gasto2");
+//credito.Withdraw(750, DateTime.Now.Date.AddDays(-5), "gasto1");
+//credito.Withdraw(750, DateTime.Now.Date.AddDays(-4), "gasto2");
 
-Console.WriteLine(credito.GetCorte());
+//Console.WriteLine(credito.GetAccountHistory());
+
+var inversion = new Inversiones("Luis Felipe", 0, 0);
+
+inversion.Deposit(1000, DateTime.Now.Date.AddDays(-5), "deposito1");
+inversion.PerformEndMonthTransaction();
+Console.WriteLine(inversion.GetAccountHistory());
