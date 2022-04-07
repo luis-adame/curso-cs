@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POO", "POO\POO.csproj", "{0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApp", "BankApp\BankApp.csproj", "{902F5B75-EA7F-4A39-AD3F-5BE3358C3332}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlEmpleados", "ControlEmpleados\ControlEmpleados.csproj", "{44E8FAEA-329E-4733-A4B7-BEBEAD0F2B16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{902F5B75-EA7F-4A39-AD3F-5BE3358C3332}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{902F5B75-EA7F-4A39-AD3F-5BE3358C3332}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{902F5B75-EA7F-4A39-AD3F-5BE3358C3332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44E8FAEA-329E-4733-A4B7-BEBEAD0F2B16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44E8FAEA-329E-4733-A4B7-BEBEAD0F2B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44E8FAEA-329E-4733-A4B7-BEBEAD0F2B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44E8FAEA-329E-4733-A4B7-BEBEAD0F2B16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
