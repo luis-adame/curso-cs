@@ -21,5 +21,14 @@ namespace ControlEmpleados
             fechaIngreso = _fechaIngreso;
             contrasenia = _contrasenia;
         }
+
+        public void validarSaludoAniversario()
+        {
+            TimeSpan time = DateTime.Now.Subtract(fechaIngreso);
+            if((time.TotalDays % 365 < 1))
+            {
+                Console.WriteLine($"Felicidades! Hoy es tu {(int)time.TotalDays/365} aniversario en la empresa.");
+            }
+        }
     }
 }

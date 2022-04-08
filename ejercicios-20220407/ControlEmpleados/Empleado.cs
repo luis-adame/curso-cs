@@ -8,7 +8,7 @@ namespace ControlEmpleados
 {
     internal class Empleado : Usuario
     {
-        List<Actividad> actividades = new List<Actividad>();
+        public List<Actividad> actividades = new List<Actividad>();
 
         public Empleado(string _nombre, DateTime _fechaIngreso, string _contrasenia) : base(_nombre, _fechaIngreso, _contrasenia) 
         {
