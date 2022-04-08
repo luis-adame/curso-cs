@@ -10,11 +10,13 @@ namespace ControlEmpleados
     {
         public int horas { get; set; }
         public string descripcion { get; set; }
+        public Boolean validacion { get; set; }
 
         public Actividad(int _horas, string _descripcion)
         {
             horas = _horas;
             descripcion = _descripcion;
+            validacion = false;
         }
     }
 }

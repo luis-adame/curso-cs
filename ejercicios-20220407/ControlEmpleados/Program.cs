@@ -124,8 +124,9 @@ class Sistema
             && int.TryParse(horasCaptura, out int horasTrabajo)
             && !string.IsNullOrEmpty(descripcionCaptura))
         {
-            var result = from r in usuariosSistema where r.id == _usuario.id select r;
-            ((Empleado)result.First()).agregarActividad(horasTrabajo, descripcionCaptura);
+            //var result = from r in usuariosSistema where r.id == _usuario.id select r;
+            //((Empleado)result.First()).agregarActividad(horasTrabajo, descripcionCaptura);
+            ((Empleado)_usuario).agregarActividad(horasTrabajo, descripcionCaptura);
             return false;
         }
         else if (!string.IsNullOrEmpty(horasCaptura)
@@ -151,10 +152,32 @@ class Sistema
 
         foreach(var actividad in _empleado.actividades)
         {
-            Console.WriteLine($"Tiempo: {actividad.horas} horas; Descripcion: {actividad.descripcion}");
+            if (!actividad.validacion){
+                Console.WriteLine($"Tiempo: {actividad.horas} horas; Descripcion: {actividad.descripcion}");
+            }
         }
 
-        Console.ReadLine();
+        Console.WriteLine("Validar horas de empleado (s/n)?");
+        var opcion = Console.ReadLine();
+
+        if (!string.IsNullOrEmpty(opcion)) {
+            if (opcion.Equals("s"))
+            {
+                foreach (var actividad in _empleado.actividades)
+                {
+                    actividad.validacion = true;
+                }
+            } else if (opcion.Equals("n"))
+            {
+                for (int i =0; i < _empleado.actividades.Count; i++)
+                {
+                    if (!_empleado.actividades.ElementAt(i).validacion)
+                    {
+                        _empleado.actividades.Remove(_empleado.actividades.ElementAt(i--));
+                    }
+                }
+            }
+        }
     }
 
     private Boolean altaEmpleado()
@@ -208,9 +231,11 @@ class Sistema
 
         if (!string.IsNullOrEmpty(nombreCaptura) && !string.IsNullOrEmpty(contraseniaCaptura))
         {
-            var result = from r in usuariosSistema where r.id == _usuario.id select r;
-            result.First().nombre = nombreCaptura;
-            result.First().contrasenia = contraseniaCaptura;
+            //var result = from r in usuariosSistema where r.id == _usuario.id select r;
+            //result.First().nombre = nombreCaptura;
+            //result.First().contrasenia = contraseniaCaptura;
+            _usuario.nombre = nombreCaptura;
+            _usuario.contrasenia = contraseniaCaptura;
             return false;
         }
         else if(!string.IsNullOrEmpty(nombreCaptura) || !string.IsNullOrEmpty(contraseniaCaptura))
