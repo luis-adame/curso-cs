@@ -1,20 +1,18 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ControlEmpleados;
+
 Sistema prueba = new Sistema();
-prueba.ejecutar();
+prueba.Ejecutar();
 
 class Sistema
 {
-    List<Usuario> usuariosSistema = new List<Usuario>();
+    BaseDatos Base;
     public Sistema()
     {
-        usuariosSistema.Add(new Supervisor("Supervisor", new DateTime(2010, 12, 07), "12345"));
-        usuariosSistema.Add(new Empleado("Empleado1", new DateTime(2020, 04, 08), "12345"));
-        usuariosSistema.Add(new Empleado("Empleado2", new DateTime(2021, 06, 21), "12345"));
-        usuariosSistema.Add(new Empleado("Empleado3", new DateTime(2022, 01, 13), "12345"));
+        Base = new BaseDatos();
     }
 
-    public void ejecutar()
+    public void Ejecutar()
     {
         do
         {
@@ -22,11 +20,11 @@ class Sistema
 
             if (user != null)
             {
-                if (user.nivelAcceso == 1)
+                if (user.NivelAcceso == 1)
                 {
                     while(opcionesEmpleado(user));
                 }
-                else if (user.nivelAcceso == 2)
+                else if (user.NivelAcceso == 2)
                 {
                     while(opcionesSupervisor(user));
                 }
@@ -40,32 +38,31 @@ class Sistema
         Console.WriteLine("Inicio de sesion.");
         Console.WriteLine("Usuario:");
         var usuario = Console.ReadLine();
+        if (string.IsNullOrEmpty(usuario))
+        {
+            usuario = "";
+        }
 
         Console.WriteLine("Contrasenia:");
         var contrasenia = Console.ReadLine();
-
-        foreach (Usuario a in usuariosSistema)
+        if (string.IsNullOrEmpty(contrasenia))
         {
-            if (a.nombre.Equals(usuario) && a.contrasenia.Equals(contrasenia))
-            {
-                return a;
-            }
+            contrasenia = "";
         }
 
-        return null;
+        return Base.BuscarUsuario(usuario, contrasenia);
     }
 
     private Boolean opcionesEmpleado(Usuario _usuario)
     {
         Console.Clear();
-        _usuario.validarSaludoAniversario();
+        Console.WriteLine(_usuario.validarSaludoAniversario());
         Console.WriteLine("Ingrese opcion");
         Console.WriteLine("1. Registrar horas.");
         Console.WriteLine("2. Salir.");
         var captura = Console.ReadLine();
-        int opcionmenu;
 
-        if (!string.IsNullOrEmpty(captura) && int.TryParse(captura, out opcionmenu))
+        if (!string.IsNullOrEmpty(captura) && int.TryParse(captura, out int opcionmenu))
         {
             switch (opcionmenu)
             {
@@ -83,7 +80,7 @@ class Sistema
     private Boolean opcionesSupervisor(Usuario _usuario)
     {
         Console.Clear();
-        _usuario.validarSaludoAniversario();
+        Console.WriteLine(_usuario.validarSaludoAniversario());
         Console.WriteLine("Ingrese opcion");
         Console.WriteLine("1. Validar horas.");
         Console.WriteLine("2. Alta empleado.");
@@ -97,9 +94,9 @@ class Sistema
         {
             switch (opcionmenu)
             {
-                case 1: validarHoras(); return true;
-                case 2: while (altaEmpleado()); return true;
-                case 3: editarEmpleado1();  return true;
+                case 1: ValidarHoras(); return true;
+                case 2: while (AltaEmpleado()); return true;
+                case 3: EditarEmpleado1();  return true;
                 case 4: bajaEmpleado();  return true;
                 case 5: return false;
                 default: return true;
@@ -124,9 +121,7 @@ class Sistema
             && int.TryParse(horasCaptura, out int horasTrabajo)
             && !string.IsNullOrEmpty(descripcionCaptura))
         {
-            //var result = from r in usuariosSistema where r.id == _usuario.id select r;
-            //((Empleado)result.First()).agregarActividad(horasTrabajo, descripcionCaptura);
-            ((Empleado)_usuario).agregarActividad(horasTrabajo, descripcionCaptura);
+            Base.AgregarActividad(_usuario, horasTrabajo, descripcionCaptura);
             return false;
         }
         else if (!string.IsNullOrEmpty(horasCaptura)
@@ -138,22 +133,21 @@ class Sistema
         return false;
     }
 
-    private void validarHoras()
+    private void ValidarHoras()
     {
         Console.Clear();
         Console.WriteLine("VALIDAR HORAS");
 
-        Usuario seleccion = seleccionaEmpleado();
+        Usuario seleccion = SeleccionaEmpleado();
 
         Console.Clear();
         Console.WriteLine("VALIDAR HORAS");
-        Console.WriteLine($"Horas trabajadas de usuario:{seleccion.nombre} \n");
-        var _empleado = (Empleado)seleccion;
+        Console.WriteLine($"Horas trabajadas de usuario:{seleccion.Nombre} \n");
 
-        foreach(var actividad in _empleado.actividades)
+        foreach(var actividad in Base.GetActividades(seleccion))
         {
-            if (!actividad.validacion){
-                Console.WriteLine($"Fecha: {actividad.fechaAlta};\tTiempo: {actividad.horas} horas;\tDescripcion: {actividad.descripcion}");
+            if (!actividad.Validacion){
+                Console.WriteLine($"Fecha: {actividad.FechaAlta};\tTiempo: {actividad.Horas} horas;\tDescripcion: {actividad.Descripcion}");
             }
         }
 
@@ -163,24 +157,15 @@ class Sistema
         if (!string.IsNullOrEmpty(opcion)) {
             if (opcion.Equals("s"))
             {
-                foreach (var actividad in _empleado.actividades)
-                {
-                    actividad.validacion = true;
-                }
+                Base.ValidarActividades(seleccion);
             } else if (opcion.Equals("n"))
             {
-                for (int i =0; i < _empleado.actividades.Count; i++)
-                {
-                    if (!_empleado.actividades.ElementAt(i).validacion)
-                    {
-                        _empleado.actividades.Remove(_empleado.actividades.ElementAt(i--));
-                    }
-                }
+                Base.BorrarActividades(seleccion);
             }
         }
     }
 
-    private Boolean altaEmpleado()
+    private Boolean AltaEmpleado()
     {
         Console.Clear();
         Console.WriteLine("ALTA EMPLEADO");
@@ -196,7 +181,7 @@ class Sistema
             && DateTime.TryParse(fechaCaptura, out DateTime fecha)
             && !string.IsNullOrEmpty(contraseniaCaptura))
         {
-            usuariosSistema.Add(new Empleado(nombreCaptura, fecha, contraseniaCaptura));
+            Base.AgregarUsuario(nombreCaptura, fecha, contraseniaCaptura);
             return false;
         }else if (!string.IsNullOrEmpty(nombreCaptura)
             || !string.IsNullOrEmpty(fechaCaptura)
@@ -209,21 +194,21 @@ class Sistema
         return false;
     }
 
-    private void editarEmpleado1()
+    private void EditarEmpleado1()
     {
         Console.Clear();
         Console.WriteLine("MODIFICAR DATOS EMPLEADO");
 
-        Usuario seleccion = seleccionaEmpleado();
+        Usuario seleccion = SeleccionaEmpleado();
 
-        while (editarEmpleado2(seleccion));
+        while (EditarEmpleado2(seleccion));
     }
 
-    private Boolean editarEmpleado2(Usuario _usuario)
+    private Boolean EditarEmpleado2(Usuario _usuario)
     {
         Console.Clear();
         Console.WriteLine("MODIFICAR DATOS EMPLEADO");
-        Console.WriteLine($"Seleccionado usuario id:{_usuario.id} nombre:{_usuario.nombre}");
+        Console.WriteLine($"Seleccionado usuario id:{_usuario.Id} nombre:{_usuario.Nombre}");
         Console.WriteLine("Nuevo nombre empleado");
         var nombreCaptura = Console.ReadLine();
         Console.WriteLine("Nueva contrasenia:");
@@ -231,11 +216,8 @@ class Sistema
 
         if (!string.IsNullOrEmpty(nombreCaptura) && !string.IsNullOrEmpty(contraseniaCaptura))
         {
-            //var result = from r in usuariosSistema where r.id == _usuario.id select r;
-            //result.First().nombre = nombreCaptura;
-            //result.First().contrasenia = contraseniaCaptura;
-            _usuario.nombre = nombreCaptura;
-            _usuario.contrasenia = contraseniaCaptura;
+            _usuario.Nombre = nombreCaptura;
+            _usuario.Contrasenia = contraseniaCaptura;
             return false;
         }
         else if(!string.IsNullOrEmpty(nombreCaptura) || !string.IsNullOrEmpty(contraseniaCaptura))
@@ -251,39 +233,31 @@ class Sistema
         Console.Clear();
         Console.WriteLine("BAJA EMPLEADO");
 
-        Usuario seleccion = seleccionaEmpleado();
+        Usuario seleccion = SeleccionaEmpleado();
 
-        if (seleccion != null)
-        {
-            usuariosSistema.Remove(seleccion);
-        }
+        Base.BorrarUsuario(seleccion);
     }
 
-    private Usuario seleccionaEmpleado()
+    private Usuario SeleccionaEmpleado()
     {
-        foreach (Usuario a in usuariosSistema)
+        foreach (Usuario a in Base.UsuariosSistema)
         {
-            if (a.nivelAcceso == 1)
+            if (a.NivelAcceso == 1)
             {
-                Console.WriteLine($"{a.id}\t{a.nombre}\t{a.fechaIngreso}");
+                Console.WriteLine($"{a.Id}\t{a.Nombre}\t{a.FechaIngreso}");
             }
         }
 
         Console.WriteLine("Ingrese id de empleado:");
         var idCaptura = Console.ReadLine();
-        int numeroid;
 
-        if (!string.IsNullOrEmpty(idCaptura) && int.TryParse(idCaptura, out numeroid))
+        if (!string.IsNullOrEmpty(idCaptura) && int.TryParse(idCaptura, out int numeroId))
         {
-            for (int i = 0; i < usuariosSistema.Count; i++)
-            {
-                if (usuariosSistema.ElementAt(i).id.Equals(numeroid))
-                {
-                    return usuariosSistema.ElementAt(i);
-                }
-            }
+            return Base.SeleccionarUsuario(numeroId);
         }
-        
-        return null;
+        else
+        {
+            return null;
+        }
     }
 }

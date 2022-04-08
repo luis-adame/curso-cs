@@ -8,19 +8,19 @@ namespace ControlEmpleados
 {
     internal class Actividad
     {
-        public int horas { get; set; }
-        public string descripcion { get; set; }
-        public Boolean validacion { get; set; }
+        public int Horas { get; set; }
+        public string Descripcion { get; set; }
+        public Boolean Validacion { get; set; }
 
-        public DateTime fechaAlta;
+        public DateTime FechaAlta;
 
         public Actividad(int _horas, string _descripcion)
         {
-            horas = _horas;
-            descripcion = _descripcion;
-            validacion = false;
+            Horas = _horas;
+            Descripcion = _descripcion;
+            Validacion = false;
 
-            fechaAlta = DateTime.Now;
+            FechaAlta = DateTime.Now;
         }
     }
 }
