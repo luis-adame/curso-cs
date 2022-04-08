@@ -10,9 +10,9 @@ namespace ControlEmpleados
     {
         public int Horas { get; set; }
         public string Descripcion { get; set; }
-        public Boolean Validacion { get; set; }
 
         public DateTime FechaAlta;
+        public Boolean Validacion { get; set; }
 
         public Actividad(int _horas, string _descripcion)
         {

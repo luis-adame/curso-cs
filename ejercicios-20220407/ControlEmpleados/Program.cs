@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ControlEmpleados;
 
-Sistema prueba = new Sistema();
+Sistema prueba = new ();
 prueba.Ejecutar();
 
 class Sistema
@@ -16,31 +16,31 @@ class Sistema
     {
         do
         {
-            Usuario user = inicioSesion();
+            Usuario user = InicioSesion();
 
             if (user != null)
             {
                 if (user.NivelAcceso == 1)
                 {
-                    while(opcionesEmpleado(user));
+                    while(OpcionesEmpleado(user));
                 }
                 else if (user.NivelAcceso == 2)
                 {
-                    while(opcionesSupervisor(user));
+                    while(OpcionesSupervisor(user));
                 }
             }
         } while (true);
     }
 
-    public Usuario inicioSesion()
+    public Usuario InicioSesion()
     {
         Console.Clear();
         Console.WriteLine("Inicio de sesion.");
         Console.WriteLine("Usuario:");
-        var usuario = Console.ReadLine();
-        if (string.IsNullOrEmpty(usuario))
+        var nombreUsuario = Console.ReadLine();
+        if (string.IsNullOrEmpty(nombreUsuario))
         {
-            usuario = "";
+            nombreUsuario = "";
         }
 
         Console.WriteLine("Contrasenia:");
@@ -50,13 +50,13 @@ class Sistema
             contrasenia = "";
         }
 
-        return Base.BuscarUsuario(usuario, contrasenia);
+        return Base.BuscarUsuario(nombreUsuario, contrasenia);
     }
 
-    private Boolean opcionesEmpleado(Usuario _usuario)
+    private Boolean OpcionesEmpleado(Usuario _usuario)
     {
         Console.Clear();
-        Console.WriteLine(_usuario.validarSaludoAniversario());
+        Console.WriteLine(_usuario.ValidarSaludoAniversario());
         Console.WriteLine("Ingrese opcion");
         Console.WriteLine("1. Registrar horas.");
         Console.WriteLine("2. Salir.");
@@ -66,7 +66,7 @@ class Sistema
         {
             switch (opcionmenu)
             {
-                case 1: while (registroHoras(_usuario)); return true;
+                case 1: while (MenuRegistrarHoras(_usuario)); return true;
                 case 2: return false;
                 default: return true;
             }
@@ -77,10 +77,10 @@ class Sistema
         }
     }
 
-    private Boolean opcionesSupervisor(Usuario _usuario)
+    private Boolean OpcionesSupervisor(Usuario _usuario)
     {
         Console.Clear();
-        Console.WriteLine(_usuario.validarSaludoAniversario());
+        Console.WriteLine(_usuario.ValidarSaludoAniversario());
         Console.WriteLine("Ingrese opcion");
         Console.WriteLine("1. Validar horas.");
         Console.WriteLine("2. Alta empleado.");
@@ -88,16 +88,15 @@ class Sistema
         Console.WriteLine("4. Baja empleado.");
         Console.WriteLine("5. Salir.");
         var captura = Console.ReadLine();
-        int opcionmenu;
 
-        if (!string.IsNullOrEmpty(captura) && int.TryParse(captura, out opcionmenu))
+        if (!string.IsNullOrEmpty(captura) && int.TryParse(captura, out int opcionmenu))
         {
             switch (opcionmenu)
             {
-                case 1: ValidarHoras(); return true;
-                case 2: while (AltaEmpleado()); return true;
-                case 3: EditarEmpleado1();  return true;
-                case 4: bajaEmpleado();  return true;
+                case 1: MenuValidarHoras(); return true;
+                case 2: while (MenuAltaEmpleado()); return true;
+                case 3: MenuEditarEmpleado();  return true;
+                case 4: MenuBajaEmpleado();  return true;
                 case 5: return false;
                 default: return true;
             }
@@ -108,7 +107,7 @@ class Sistema
         }
     }
 
-    private Boolean registroHoras(Usuario _usuario)
+    private Boolean MenuRegistrarHoras(Usuario _usuario)
     {
         Console.Clear();
         Console.WriteLine("REGISTRO HORAS");
@@ -133,12 +132,12 @@ class Sistema
         return false;
     }
 
-    private void ValidarHoras()
+    private void MenuValidarHoras()
     {
         Console.Clear();
         Console.WriteLine("VALIDAR HORAS");
 
-        Usuario seleccion = SeleccionaEmpleado();
+        Usuario seleccion = MenuSeleccionaEmpleado();
 
         Console.Clear();
         Console.WriteLine("VALIDAR HORAS");
@@ -165,7 +164,7 @@ class Sistema
         }
     }
 
-    private Boolean AltaEmpleado()
+    private Boolean MenuAltaEmpleado()
     {
         Console.Clear();
         Console.WriteLine("ALTA EMPLEADO");
@@ -194,17 +193,17 @@ class Sistema
         return false;
     }
 
-    private void EditarEmpleado1()
+    private void MenuEditarEmpleado()
     {
         Console.Clear();
         Console.WriteLine("MODIFICAR DATOS EMPLEADO");
 
-        Usuario seleccion = SeleccionaEmpleado();
+        Usuario seleccion = MenuSeleccionaEmpleado();
 
-        while (EditarEmpleado2(seleccion));
+        while (MenuEditarEmpleado2(seleccion));
     }
 
-    private Boolean EditarEmpleado2(Usuario _usuario)
+    private Boolean MenuEditarEmpleado2(Usuario _usuario)
     {
         Console.Clear();
         Console.WriteLine("MODIFICAR DATOS EMPLEADO");
@@ -216,8 +215,7 @@ class Sistema
 
         if (!string.IsNullOrEmpty(nombreCaptura) && !string.IsNullOrEmpty(contraseniaCaptura))
         {
-            _usuario.Nombre = nombreCaptura;
-            _usuario.Contrasenia = contraseniaCaptura;
+            Base.ModificarUsuario(_usuario, nombreCaptura, contraseniaCaptura);
             return false;
         }
         else if(!string.IsNullOrEmpty(nombreCaptura) || !string.IsNullOrEmpty(contraseniaCaptura))
@@ -228,24 +226,21 @@ class Sistema
         return false;
     }
 
-    private void bajaEmpleado()
+    private void MenuBajaEmpleado()
     {
         Console.Clear();
         Console.WriteLine("BAJA EMPLEADO");
 
-        Usuario seleccion = SeleccionaEmpleado();
+        Usuario seleccion = MenuSeleccionaEmpleado();
 
         Base.BorrarUsuario(seleccion);
     }
 
-    private Usuario SeleccionaEmpleado()
+    private Usuario MenuSeleccionaEmpleado()
     {
-        foreach (Usuario a in Base.UsuariosSistema)
+        foreach (Usuario a in Base.GetListaUsuarios(1))
         {
-            if (a.NivelAcceso == 1)
-            {
-                Console.WriteLine($"{a.Id}\t{a.Nombre}\t{a.FechaIngreso}");
-            }
+            Console.WriteLine($"{a.Id}\t{a.Nombre}\t{a.FechaIngreso}");
         }
 
         Console.WriteLine("Ingrese id de empleado:");
@@ -255,9 +250,7 @@ class Sistema
         {
             return Base.SeleccionarUsuario(numeroId);
         }
-        else
-        {
-            return null;
-        }
+
+        return null;
     }
 }

@@ -8,7 +8,7 @@ namespace ControlEmpleados
 {
     internal class Usuario
     {
-        protected static int conteoId = 0;
+        protected static int controlId = 0;
         public int Id { get; set; }
         public string Nombre { get; set; }
         public DateTime FechaIngreso { get; set; }
@@ -22,7 +22,7 @@ namespace ControlEmpleados
             Contrasenia = _contrasenia;
         }
 
-        public string validarSaludoAniversario()
+        public string ValidarSaludoAniversario()
         {
             TimeSpan time = DateTime.Now.Subtract(FechaIngreso);
 

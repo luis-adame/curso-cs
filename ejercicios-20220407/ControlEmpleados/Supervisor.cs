@@ -10,7 +10,7 @@ namespace ControlEmpleados
     {
         public Supervisor(string _nombre, DateTime _fechaIngreso, string _contrasenia) : base(_nombre, _fechaIngreso, _contrasenia) 
         {
-            Id = conteoId++;
+            Id = controlId++;
             NivelAcceso = 2;
         }
 

@@ -88,5 +88,25 @@ namespace ControlEmpleados
                 UsuariosSistema.Remove(_usuario);
             }
         }
+
+        public void ModificarUsuario(Usuario _usuario, string nombre, string contrasenia)
+        {
+
+        }
+
+        public List<Usuario> GetListaUsuarios(int tipo)
+        {
+            List<Usuario> lista = new List<Usuario>();
+
+            foreach (Usuario a in UsuariosSistema)
+            {
+                if (a.NivelAcceso == tipo)
+                {
+                    lista.Add(a);
+                }
+            }
+
+            return lista;
+        }
     }
 }
