@@ -25,10 +25,16 @@ namespace ControlEmpleados
         public void validarSaludoAniversario()
         {
             TimeSpan time = DateTime.Now.Subtract(fechaIngreso);
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Bienvenido {nombre} ");
+
             if((time.TotalDays % 365 < 1))
             {
-                Console.WriteLine($"Felicidades! Hoy es tu {(int)time.TotalDays/365} aniversario en la empresa.");
+                sb.Append($"Felicidades! Hoy es tu {(int)time.TotalDays/365} aniversario en la empresa.");
             }
+
+            Console.WriteLine(sb.ToString());
         }
     }
 }
