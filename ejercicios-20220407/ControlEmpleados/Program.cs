@@ -153,7 +153,7 @@ class Sistema
         foreach(var actividad in _empleado.actividades)
         {
             if (!actividad.validacion){
-                Console.WriteLine($"Tiempo: {actividad.horas} horas; Descripcion: {actividad.descripcion}");
+                Console.WriteLine($"Fecha: {actividad.fechaAlta};\tTiempo: {actividad.horas} horas;\tDescripcion: {actividad.descripcion}");
             }
         }
 

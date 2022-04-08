@@ -12,11 +12,15 @@ namespace ControlEmpleados
         public string descripcion { get; set; }
         public Boolean validacion { get; set; }
 
+        public DateTime fechaAlta;
+
         public Actividad(int _horas, string _descripcion)
         {
             horas = _horas;
             descripcion = _descripcion;
             validacion = false;
+
+            fechaAlta = DateTime.Now;
         }
     }
 }
