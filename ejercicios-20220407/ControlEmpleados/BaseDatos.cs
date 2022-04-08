@@ -9,6 +9,7 @@ namespace ControlEmpleados
     internal class BaseDatos
     {
         public List<Usuario> UsuariosSistema = new List<Usuario>();
+        public List<Proyecto> Proyectos = new List<Proyecto>();
 
         public BaseDatos()
         {
@@ -37,9 +38,9 @@ namespace ControlEmpleados
             return empleado.Actividades;
         }
 
-        public void AgregarActividad(Usuario _usuario, int horasTrabajo, string descripcionCaptura)
+        public void AgregarActividad(Usuario _usuario, int horasTrabajo, string descripcionCaptura, int _idProyectos)
         {
-            ((Empleado)_usuario).AgregarActividad(horasTrabajo, descripcionCaptura);
+            ((Empleado)_usuario).AgregarActividad(horasTrabajo, descripcionCaptura, _idProyectos);
         }
 
         public void ValidarActividades(Usuario _usuario)
@@ -89,9 +90,10 @@ namespace ControlEmpleados
             }
         }
 
-        public void ModificarUsuario(Usuario _usuario, string nombre, string contrasenia)
+        public void ModificarUsuario(Usuario _usuario, string _nombre, string _contrasenia)
         {
-
+            _usuario.Nombre = _nombre;
+            _usuario.Contrasenia = _contrasenia;
         }
 
         public List<Usuario> GetListaUsuarios(int tipo)
@@ -104,6 +106,39 @@ namespace ControlEmpleados
                 {
                     lista.Add(a);
                 }
+            }
+
+            return lista;
+        }
+
+        public void NuevoProyecto(string _nombre, string _descripcion)
+        {
+            Proyectos.Add(new Proyecto(_nombre, _descripcion));
+        }
+
+        public Proyecto SeleccionarProyecto(int _id)
+        {
+            for (int i = 0; i < Proyectos.Count; i++)
+            {
+                if (Proyectos.ElementAt(i).Id.Equals(_id))
+                {
+                    return Proyectos.ElementAt(i);
+                }
+            }
+
+            return null;
+        }
+
+        public List<Proyecto> GetListaProyectos(/*int tipo*/)
+        {
+            List<Proyecto> lista = new List<Proyecto>();
+
+            foreach (Proyecto a in Proyectos)
+            {
+                //if (a.UsuarioAlta == tipo)
+                //{
+                    lista.Add(a);
+                //}
             }
 
             return lista;

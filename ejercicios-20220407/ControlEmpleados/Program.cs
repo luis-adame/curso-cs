@@ -66,7 +66,7 @@ class Sistema
         {
             switch (opcionmenu)
             {
-                case 1: while (MenuRegistrarHoras(_usuario)); return true;
+                case 1: MenuRegistrarHoras(_usuario); return true;
                 case 2: return false;
                 default: return true;
             }
@@ -107,7 +107,20 @@ class Sistema
         }
     }
 
-    private Boolean MenuRegistrarHoras(Usuario _usuario)
+    private void MenuRegistrarHoras(Usuario _usuario)
+    {
+        Console.Clear();
+        Console.WriteLine("REGISTRO HORAS");
+
+        Proyecto seleccion = MenuSeleccionaProyecto();
+
+        if (seleccion != null)
+        {
+            while (MenuRegistrarHoras2(_usuario, seleccion.Id)) ;
+        }
+    }
+
+    private Boolean MenuRegistrarHoras2(Usuario _usuario, int _idProyecto)
     {
         Console.Clear();
         Console.WriteLine("REGISTRO HORAS");
@@ -120,7 +133,7 @@ class Sistema
             && int.TryParse(horasCaptura, out int horasTrabajo)
             && !string.IsNullOrEmpty(descripcionCaptura))
         {
-            Base.AgregarActividad(_usuario, horasTrabajo, descripcionCaptura);
+            Base.AgregarActividad(_usuario, horasTrabajo, descripcionCaptura, _idProyecto);
             return false;
         }
         else if (!string.IsNullOrEmpty(horasCaptura)
@@ -249,6 +262,24 @@ class Sistema
         if (!string.IsNullOrEmpty(idCaptura) && int.TryParse(idCaptura, out int numeroId))
         {
             return Base.SeleccionarUsuario(numeroId);
+        }
+
+        return null;
+    }
+
+    private Proyecto MenuSeleccionaProyecto()
+    {
+        foreach (Proyecto a in Base.GetListaProyectos())
+        {
+            Console.WriteLine($"{a.Id}\t{a.Nombre}\t{a.Descripcion}");
+        }
+
+        Console.WriteLine("Ingrese id de proyecto:");
+        var idCaptura = Console.ReadLine();
+
+        if (!string.IsNullOrEmpty(idCaptura) && int.TryParse(idCaptura, out int numeroId))
+        {
+            return Base.SeleccionarProyecto(numeroId);
         }
 
         return null;

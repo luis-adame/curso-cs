@@ -16,9 +16,9 @@ namespace ControlEmpleados
             NivelAcceso = 1;
         }
 
-        public void AgregarActividad(int _horas, string _descripcion)
+        public void AgregarActividad(int _horas, string _descripcion, int _idProyecto)
         {
-            Actividad nueva = new Actividad(_horas, _descripcion);
+            Actividad nueva = new Actividad(_horas, _descripcion, _idProyecto);
             Actividades.Add(nueva);
         }
     }
