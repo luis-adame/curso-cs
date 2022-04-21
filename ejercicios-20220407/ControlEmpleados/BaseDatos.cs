@@ -143,5 +143,11 @@ namespace ControlEmpleados
 
             return lista;
         }
+
+        public void ModificarProyecto(Proyecto _proyecto, string _nombre, string _descripcion)
+        {
+            _proyecto.Nombre = _nombre;
+            _proyecto.Descripcion = _descripcion;
+        }
     }
 }

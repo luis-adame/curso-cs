@@ -22,11 +22,11 @@ class Sistema
             {
                 if (user.NivelAcceso == 1)
                 {
-                    while(OpcionesEmpleado(user));
+                    while(MenuEmpleado(user));
                 }
                 else if (user.NivelAcceso == 2)
                 {
-                    while(OpcionesSupervisor(user));
+                    while(MenuSupervisor(user));
                 }
             }
         } while (true);
@@ -53,7 +53,7 @@ class Sistema
         return Base.BuscarUsuario(nombreUsuario, contrasenia);
     }
 
-    private Boolean OpcionesEmpleado(Usuario _usuario)
+    private Boolean MenuEmpleado(Usuario _usuario)
     {
         Console.Clear();
         Console.WriteLine(_usuario.ValidarSaludoAniversario());
@@ -77,10 +77,35 @@ class Sistema
         }
     }
 
-    private Boolean OpcionesSupervisor(Usuario _usuario)
+    private Boolean MenuSupervisor(Usuario _usuario)
     {
         Console.Clear();
         Console.WriteLine(_usuario.ValidarSaludoAniversario());
+        Console.WriteLine("Ingrese opcion");
+        Console.WriteLine("1. Empleados.");
+        Console.WriteLine("2. Proyectos.");
+        Console.WriteLine("3. Salir.");
+        var captura = Console.ReadLine();
+
+        if (!string.IsNullOrEmpty(captura) && int.TryParse(captura, out int opcionmenu))
+        {
+            switch (opcionmenu)
+            {
+                case 1: while(OpcionesEmpleado()); return true;
+                case 2: while(OpcionesProyecto()); return true;
+                case 3: return false;
+                default: return true;
+            }
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    private Boolean OpcionesEmpleado()
+    {
+        Console.Clear();
         Console.WriteLine("Ingrese opcion");
         Console.WriteLine("1. Validar horas.");
         Console.WriteLine("2. Alta empleado.");
@@ -94,10 +119,37 @@ class Sistema
             switch (opcionmenu)
             {
                 case 1: MenuValidarHoras(); return true;
-                case 2: while (MenuAltaEmpleado()); return true;
-                case 3: MenuEditarEmpleado();  return true;
-                case 4: MenuBajaEmpleado();  return true;
+                case 2: while (MenuAltaEmpleado()) ; return true;
+                case 3: MenuEditarEmpleado(); return true;
+                case 4: MenuBajaEmpleado(); return true;
                 case 5: return false;
+                default: return true;
+            }
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    private Boolean OpcionesProyecto()
+    {
+        Console.Clear();
+        Console.WriteLine("Ingrese opcion");
+        Console.WriteLine("1. Alta Proyecto.");
+        Console.WriteLine("2. Editar Proyecto.");
+        Console.WriteLine("3. Baja Proyecto.");
+        Console.WriteLine("4. Salir.");
+        var captura = Console.ReadLine();
+
+        if (!string.IsNullOrEmpty(captura) && int.TryParse(captura, out int opcionmenu))
+        {
+            switch (opcionmenu)
+            {
+                case 1: while(MenuAltaProyecto()); return true;
+                case 2: MenuEditarProyecto(); return true;
+                case 3: /*MenuBajaProyecto();*/ return true;
+                case 4: return false;
                 default: return true;
             }
         }
@@ -283,5 +335,62 @@ class Sistema
         }
 
         return null;
+    }
+
+    private Boolean MenuAltaProyecto()
+    {
+        Console.Clear();
+        Console.WriteLine("ALTA PROYECTO");
+        Console.WriteLine("Nombre:");
+        var nombreCaptura = Console.ReadLine();
+        Console.WriteLine("Descripcion:");
+        var descripcionCaptura = Console.ReadLine();
+
+        if (!string.IsNullOrEmpty(nombreCaptura)
+            && !string.IsNullOrEmpty(descripcionCaptura))
+        {
+            Base.NuevoProyecto(nombreCaptura, descripcionCaptura);
+            return false;
+        }
+        else if (!string.IsNullOrEmpty(nombreCaptura)
+           || !string.IsNullOrEmpty(descripcionCaptura))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void MenuEditarProyecto()
+    {
+        Console.Clear();
+        Console.WriteLine("MODIFICAR DATOS PROYECTO");
+
+        Proyecto seleccion = MenuSeleccionaProyecto();
+
+        while (MenuEditarProyecto2(seleccion)) ;
+    }
+
+    private Boolean MenuEditarProyecto2(Proyecto _proyecto)
+    {
+        Console.Clear();
+        Console.WriteLine("MODIFICAR DATOS PROYECTO");
+        Console.WriteLine($"Seleccionado proyecto id:{_proyecto.Id} nombre:{_proyecto.Nombre}");
+        Console.WriteLine("Nuevo nombre:");
+        var nombreCaptura = Console.ReadLine();
+        Console.WriteLine("Nueva descripcion:");
+        var descripcionCaptura = Console.ReadLine();
+
+        if (!string.IsNullOrEmpty(nombreCaptura) && !string.IsNullOrEmpty(descripcionCaptura))
+        {
+            Base.ModificarProyecto(_proyecto, nombreCaptura, descripcionCaptura);
+            return false;
+        }
+        else if (!string.IsNullOrEmpty(nombreCaptura) || !string.IsNullOrEmpty(descripcionCaptura))
+        {
+            return true;
+        }
+
+        return false;
     }
 }

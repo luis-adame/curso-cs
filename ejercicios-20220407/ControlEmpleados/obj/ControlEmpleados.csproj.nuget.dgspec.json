@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Luis\\source\\repos\\luis-adame\\curso-cs\\ejercicios-20220407\\ControlEmpleados\\ControlEmpleados.csproj": {}
+    "C:\\Users\\Luis\\Source\\Repos\\luis-adame\\curso-cs\\ejercicios-20220407\\ControlEmpleados\\ControlEmpleados.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Luis\\source\\repos\\luis-adame\\curso-cs\\ejercicios-20220407\\ControlEmpleados\\ControlEmpleados.csproj": {
+    "C:\\Users\\Luis\\Source\\Repos\\luis-adame\\curso-cs\\ejercicios-20220407\\ControlEmpleados\\ControlEmpleados.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luis\\source\\repos\\luis-adame\\curso-cs\\ejercicios-20220407\\ControlEmpleados\\ControlEmpleados.csproj",
+        "projectUniqueName": "C:\\Users\\Luis\\Source\\Repos\\luis-adame\\curso-cs\\ejercicios-20220407\\ControlEmpleados\\ControlEmpleados.csproj",
         "projectName": "ControlEmpleados",
-        "projectPath": "C:\\Users\\Luis\\source\\repos\\luis-adame\\curso-cs\\ejercicios-20220407\\ControlEmpleados\\ControlEmpleados.csproj",
+        "projectPath": "C:\\Users\\Luis\\Source\\Repos\\luis-adame\\curso-cs\\ejercicios-20220407\\ControlEmpleados\\ControlEmpleados.csproj",
         "packagesPath": "C:\\Users\\Luis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Luis\\source\\repos\\luis-adame\\curso-cs\\ejercicios-20220407\\ControlEmpleados\\obj\\",
+        "outputPath": "C:\\Users\\Luis\\Source\\Repos\\luis-adame\\curso-cs\\ejercicios-20220407\\ControlEmpleados\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Luis\\AppData\\Roaming\\NuGet\\NuGet.Config",
